@@ -1,0 +1,113 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 28/06/2016 23:40
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-abacus:before { content: "\f100"; }
+.flaticon-avatar:before { content: "\f101"; }
+.flaticon-black:before { content: "\f102"; }
+.flaticon-box:before { content: "\f103"; }
+.flaticon-cart-of-ecommerce:before { content: "\f104"; }
+.flaticon-category:before { content: "\f105"; }
+.flaticon-check-mark-black-outline:before { content: "\f106"; }
+.flaticon-circle:before { content: "\f107"; }
+.flaticon-colors:before { content: "\f108"; }
+.flaticon-cross:before { content: "\f109"; }
+.flaticon-filter-filled-tool-symbol:before { content: "\f10a"; }
+.flaticon-home:before { content: "\f10b"; }
+.flaticon-internet:before { content: "\f10c"; }
+.flaticon-invoice:before { content: "\f10d"; }
+.flaticon-left-arrow:before { content: "\f10e"; }
+.flaticon-magnifier:before { content: "\f10f"; }
+.flaticon-map:before { content: "\f110"; }
+.flaticon-menu:before { content: "\f111"; }
+.flaticon-menu-1:before { content: "\f112"; }
+.flaticon-multiple-users-silhouette:before { content: "\f113"; }
+.flaticon-news:before { content: "\f114"; }
+.flaticon-package-for-delivery:before { content: "\f115"; }
+.flaticon-pencil-striped-symbol-for-interface-edit-buttons:before { content: "\f116"; }
+.flaticon-people:before { content: "\f117"; }
+.flaticon-people-1:before { content: "\f118"; }
+.flaticon-placeholder:before { content: "\f119"; }
+.flaticon-power:before { content: "\f11a"; }
+.flaticon-previous:before { content: "\f11b"; }
+.flaticon-right-arrow:before { content: "\f11c"; }
+.flaticon-rounded-add-button:before { content: "\f11d"; }
+.flaticon-rubbish-bin:before { content: "\f11e"; }
+.flaticon-security:before { content: "\f11f"; }
+.flaticon-shopping-cart-with-product-inside:before { content: "\f120"; }
+.flaticon-sign:before { content: "\f121"; }
+.flaticon-signs:before { content: "\f122"; }
+.flaticon-store:before { content: "\f123"; }
+.flaticon-up-and-down-arrows-triangles:before { content: "\f124"; }
+    
+    $font-Flaticon-abacus: "\f100";
+    $font-Flaticon-avatar: "\f101";
+    $font-Flaticon-black: "\f102";
+    $font-Flaticon-box: "\f103";
+    $font-Flaticon-cart-of-ecommerce: "\f104";
+    $font-Flaticon-category: "\f105";
+    $font-Flaticon-check-mark-black-outline: "\f106";
+    $font-Flaticon-circle: "\f107";
+    $font-Flaticon-colors: "\f108";
+    $font-Flaticon-cross: "\f109";
+    $font-Flaticon-filter-filled-tool-symbol: "\f10a";
+    $font-Flaticon-home: "\f10b";
+    $font-Flaticon-internet: "\f10c";
+    $font-Flaticon-invoice: "\f10d";
+    $font-Flaticon-left-arrow: "\f10e";
+    $font-Flaticon-magnifier: "\f10f";
+    $font-Flaticon-map: "\f110";
+    $font-Flaticon-menu: "\f111";
+    $font-Flaticon-menu-1: "\f112";
+    $font-Flaticon-multiple-users-silhouette: "\f113";
+    $font-Flaticon-news: "\f114";
+    $font-Flaticon-package-for-delivery: "\f115";
+    $font-Flaticon-pencil-striped-symbol-for-interface-edit-buttons: "\f116";
+    $font-Flaticon-people: "\f117";
+    $font-Flaticon-people-1: "\f118";
+    $font-Flaticon-placeholder: "\f119";
+    $font-Flaticon-power: "\f11a";
+    $font-Flaticon-previous: "\f11b";
+    $font-Flaticon-right-arrow: "\f11c";
+    $font-Flaticon-rounded-add-button: "\f11d";
+    $font-Flaticon-rubbish-bin: "\f11e";
+    $font-Flaticon-security: "\f11f";
+    $font-Flaticon-shopping-cart-with-product-inside: "\f120";
+    $font-Flaticon-sign: "\f121";
+    $font-Flaticon-signs: "\f122";
+    $font-Flaticon-store: "\f123";
+    $font-Flaticon-up-and-down-arrows-triangles: "\f124";
