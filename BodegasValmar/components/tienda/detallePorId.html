@@ -1,0 +1,33 @@
+<div id="tiendaModelDetailsView" data-role="view" data-title="BodegasPerú" data-model="app.tienda.tiendaModel" data-bind="events: { show: detailsShowPorId }">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <a data-role="backbutton" data-align="left">Back</a>
+            <span data-role="view-title"></span>
+        </div>
+    </header>
+    <div class="details-content">
+        <div class="km-listview-wrapper">
+            <ul class="km-listview km-list km-listinset details-fields">
+                <h3 data-bind="text: currentItem.nombre"></h3>
+                <img data-bind="attr: { src: currentItem.imagenUrl }" width="100%" height="auto">
+                <li>
+                    <span class="pull-left">Dirección</span>
+                    <span class="pull-right" data-bind="text: currentItem.direccion"></span>
+                </li>
+                <li>
+                    <span class="pull-left">Telefono</span>
+                    <span class="pull-right" data-bind="text: currentItem.telefono_local"></span>
+                </li>
+                <li>
+                    <span class="pull-left">Movil</span>
+                    <span class="pull-right" data-bind="text: currentItem.telefono_movil"></span>
+                </li>
+                
+                <li>
+                    <div class="flaticon-placeholder"></div>
+                    <div data-bind="text: currentItem.distrito"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

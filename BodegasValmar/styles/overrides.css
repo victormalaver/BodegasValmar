@@ -18,11 +18,11 @@
 .km-nova .km-shim,
 .km-phone .km-nova .km-actionsheet-wrapper,
 .km-nova .km-actionsheet-root {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.7);
 }
 /* Button */
 .km-nova .km-button {
-  color: #888e90;
+  color: #00a2b1;
   background: #fff;
   border-color: #888e90;
 }
@@ -132,7 +132,7 @@
 }
 .km-nova .km-buttongroup .km-state-active {
   color: #fff;
-  background-color: #9ca6a6;
+  background-color: #00a2b1;
 }
 .km-nova .km-buttongroup.km-primary .km-button {
   color: #ff4350;
@@ -181,7 +181,7 @@
 /* ListView */
 .km-nova .km-list > li {
   border-color: #dfe1e2;
-  color: #32364c;
+  color: rgb(239, 239, 239);
 }
 .km-nova .km-list > li.km-load-more {
   border-color: transparent;
@@ -442,7 +442,7 @@
 .km-nova .k-toolbar,
 .km-nova .km-tabstrip,
 .km-nova .km-drawer .km-content {
-  background-image: linear-gradient(to bottom, #2e3246 0%, #242736 100%);
+  background-image: linear-gradient(to bottom, #00a2b1 0%, #00a2b1 100%);
 }
 .km-nova .km-drawer .km-navbar {
   background: #14151e;
@@ -470,8 +470,8 @@
 /*Custom overrides*/
 /*Primary button*/
 .km-nova .button-group .km-button.primary {
-  background-color: #ff4350;
-  border-color: #ff4350;
+  background-color: #00a2b1;
+  border-color: #00a2b1;
   color: #fff;
 }
 .km-nova .button-group .km-button.primary.km-state-active {

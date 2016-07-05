@@ -1,7 +1,69 @@
 'use strict';
 
 app.usuario = kendo.observable({
-    onShow: function () {},
+    onShow: function () {
+        if (idUsuario !== "") {
+            $("#usuarioView .li-7").css("display", "none");
+            // ObternetPorID:
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": servidor + "cliente/obtenerPorId?id=" + idUsuario,
+                "method": "GET",
+                "headers": {
+                    "token": token,
+                    "cache-control": "no-cache"
+                }
+            }
+
+            $.ajax(settings).done(function (data) {
+                $("#usuarioView .li-1 input").val(data.nombre);
+                $("#usuarioView .li-2 input").val(data.apellido);
+
+                $("#generoUsuario").kendoMobileButtonGroup({
+                    select: function (e) {
+                        // console.log("selected index:" + e.index);
+                    },
+                    index: (data.genero == "M" ? 0 : 1)
+                });
+                $("#usuarioView .li-4 input").val(data.correo);
+                $("#usuarioView .li-5 input").val(data.password);
+                $("#usuarioView .li-6 input").val(data.password);
+
+                $("#usuarioView .li-8").css("display", "block");
+
+                // var html = [];
+                // for (var i = 0; i < data.length; i++) {
+                //     html.push('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+                // }
+                // $("#departamento-select-filtro").html(html);
+                // $("#departamento-select-filtro").val(1);
+            }).fail(function (response) {
+                kendo.mobile.application.hideLoading();
+                switch (response.status) {
+                    case 404:
+                        // No existe el servicio
+                        $("#contentAlertHome").html("El servicio no está disponible");
+                        $("#emailLogin").parent().addClass("error");
+                        openModal('modalview-alert-home');
+                        return false;
+                        break;
+                    default:
+                        // No existe el servicio
+                        $("#contentAlertHome").html("Error en el servicio");
+                        $("#emailLogin").parent().addClass("error");
+                        openModal('modalview-alert-home');
+                        return false;
+                        break;
+                }
+            });
+            // HttpStatus: 200 OK
+            // 404 NOT FOUND
+        } else {
+            $("#usuarioView .li-7").css("display", "block");
+            $("#usuarioView .li-8").css("display", "none");
+        }
+    },
     afterShow: function () {}
 });
 
@@ -61,58 +123,81 @@ app.usuario = kendo.observable({
         usuarioModel = kendo.observable({
             displayName: '',
             apellido: '',
+            genero: '',
             email: '',
             password: '',
             password2: '',
-            validateData: function (data) {
-                if (!data.displayName) {
-                    alert('Ingrese sus nombres');
-                    return false;
+            validateData: function () {
+                var valido = true;
+                $("#usuarioView [class^='li-'] input").removeClass("error");
+
+                if (!$("#usuarioView .li-1 input").val()) {
+                    $("#usuarioView .li-1 input").addClass("error");
+                    // alert('Ingrese sus nombres');
+                    valido = false;
                 }
 
-                if (!data.apellido) {
-                    alert('Ingrese sus apellidos');
-                    return false;
+                if (!$("#usuarioView .li-2 input").val()) {
+                    $("#usuarioView .li-2 input").addClass("error");
+                    // alert('Ingrese sus apellidos');
+                    valido = false;
                 }
 
-                if (!data.email) {
-                    alert('Ingrese un correo de contacto');
-                    return false;
+                if (!$("#usuarioView .li-4 input").val()) {
+                    $("#usuarioView .li-4 input").addClass("error");
+                    // alert('Ingrese un correo de contacto');
+                    valido = false;
                 }
 
-                if (!data.password) {
-                    alert('Error: Ingrese primera contraseña');
-                    return false;
-                }
-                if (!data.password2) {
-                    alert('Error: Ingrese segunda contraseña');
-                    return false;
-                }
-
-                if (data.password !== data.password2) {
-                    alert('Error: Contraseñas distintas');
-                    return false;
+                var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                if (testEmail.test($("#usuarioView .li-4 input").val())) {
+                    $("#usuarioView .li-4 input").removeClass("error");
+                } else {
+                    $("#usuarioView .li-4 input").addClass("error");
+                    // alert('Ingrese un correo válido');
+                    valido = false;
                 }
 
-                return true;
+                if (!$("#generoUsuario .km-state-active .km-text").text()) {
+                    $("#generoUsuario").addClass("error");
+                    // alert('Seleccione su genero');
+                    valido = false;
+                }
+
+                if (!$("#usuarioView .li-5 input").val()) {
+                    $("#usuarioView .li-5 input").addClass("error");
+                    // alert('Error: Ingrese primera contraseña');
+                    valido = false;
+                }
+                if (!$("#usuarioView .li-6 input").val()) {
+                    $("#usuarioView .li-6 input").addClass("error");
+                    // alert('Error: Ingrese segunda contraseña');
+                    valido = false;
+                }
+
+                if ($("#usuarioView .li-5 input").val() !== $("#usuarioView .li-6 input").val()) {
+                    $("#usuarioView .li-5 input").addClass("error");
+                    $("#usuarioView .li-6 input").addClass("error");
+                    // alert('Error: Contraseñas distintas');
+                    valido = false;
+                }
+
+                return valido;
             },
             register: function () {
-                var model = usuarioModel,
-                    email = model.email.toLowerCase(),
-                    password = model.password,
-                    displayName = model.displayName,
-                    apellido = model.apellido,
-                    attrs = {
-                        Email: email,
-                        DisplayName: displayName,
-                        apellido: apellido
-                    };
-
+                var model = usuarioModel;
                 if (!model.validateData(model)) {
                     return false;
                 }
-
-
+                kendo.mobile.application.showLoading();
+                var data = {
+                    "nombre": $("#usuarioView .li-1 input").val(),
+                    "apellido": $("#usuarioView .li-2 input").val(),
+                    "correo": $("#usuarioView .li-4 input").val(),
+                    "password": $("#usuarioView .li-5 input").val(),
+                    "password2": $("#usuarioView .li-6 input").val(),
+                    "genero": $("#generoUsuario .km-state-active .km-text").text() == "Mujer" ? "F" : "M",
+                };
                 var settings = {
                     "async": true,
                     "crossDomain": true,
@@ -124,11 +209,37 @@ app.usuario = kendo.observable({
                         "cache-control": "no-cache"
                     },
                     "processData": false,
-                    "data": "{ \"nombre\": \"Son Goku\", \"apellido\": \"Black\", \"correo\": \"qqqqqqqq@valmar.com.pe\", \"password\": \"12345\", \"genero\": \"M\" }"
+                    "data": JSON.stringify(data)
                 }
 
                 $.ajax(settings).done(function (response) {
-                    console.log(response);
+                    kendo.mobile.application.hideLoading();
+                    app.mobileApp.navigate('components/login/view.html');
+                    $("#contentAlertHome").html("Se registró correctamente. Inicie sesión con su correo y contraseña");
+                    openModal('modalview-alert-home');
+                }).fail(function (response) {
+                    kendo.mobile.application.hideLoading();
+                    switch (response.status) {
+                        case 404:
+                            // No existe el servicio
+                            $("#contentAlertHome").html("El servicio no está disponible");
+                            openModal('modalview-alert-home');
+                            return false;
+                            break;
+                        case 409:
+                            // No existe el servicio
+                            $("#contentAlertHome").html("El correo ya está registrado");
+                            $("#usuarioView .li-4 input").addClass("error");
+                            openModal('modalview-alert-home');
+                            return false;
+                            break;
+                        default:
+                            // No existe el servicio
+                            $("#contentAlertHome").html("Error en el servicio");
+                            openModal('modalview-alert-home');
+                            return false;
+                            break;
+                    }
                 });
                 // HttpStatus: 201 Created
                 // 409 Conlfict
@@ -136,6 +247,62 @@ app.usuario = kendo.observable({
 
 
                 // provider.Users.register(email, password, attrs, successHandler, init);
+            },
+            updateUsuario: function () {
+                // Actualizar USUARIO:
+                var data = {
+                    "id": idUsuario,
+                    "nombre": $("#usuarioView .li-1 input").val(),
+                    "apellido": $("#usuarioView .li-2 input").val(),
+                    "correo": $("#usuarioView .li-4 input").val(),
+                    "password": $("#usuarioView .li-5 input").val(),
+                    "password2": $("#usuarioView .li-6 input").val(),
+                    "genero": $("#generoUsuario .km-state-active .km-text").text() == "Mujer" ? "F" : "M",
+                };
+                var model = usuarioModel;
+                if (!model.validateData(data)) {
+                    return false;
+                }
+                kendo.mobile.application.showLoading();
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": servidor + "cliente/actualizar",
+                    "method": "PUT",
+                    "headers": {
+                        "content-type": "application/json",
+                        "token": "bndul7rr0eqfnd8fhech90p4h1",
+                        "cache-control": "no-cache",
+                        "postman-token": "df004a04-c2e2-ccc5-2f9d-5a4761502ef3"
+                    },
+                    "processData": false,
+                    "data": JSON.stringify(data)
+                }
+                $.ajax(settings).done(function (data) {
+                    kendo.mobile.application.hideLoading();
+                    $("#contentAlertHome").html("Datos actualizados correctamente");
+                    openModal('modalview-alert-home');
+                }).fail(function (response) {
+                    kendo.mobile.application.hideLoading();
+                    switch (response.status) {
+                        case 404:
+                            // No existe el servicio
+                            $("#contentAlertHome").html("El servicio no está disponible");
+                            $("#emailLogin").parent().addClass("error");
+                            openModal('modalview-alert-home');
+                            return false;
+                            break;
+                        default:
+                            // No existe el servicio
+                            $("#contentAlertHome").html("Error en el servicio");
+                            $("#emailLogin").parent().addClass("error");
+                            openModal('modalview-alert-home');
+                            return false;
+                            break;
+                    }
+                });
+                // HttpStatus: 200 OK
+                // 404 NOT FOUND
             },
             toggleView: function () {
                 mode = mode === 'signin' ? 'register' : 'signin';

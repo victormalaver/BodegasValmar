@@ -3,11 +3,7 @@
 app.tienda = kendo.observable({
     dataInit: function () {},
     onShow: function () {},
-    afterShow: function () {},
-    verListaTienda: function(e){
-        console.log(1111);
-        console.log(e);
-    }
+    afterShow: function () {}
 });
 
 // START_CUSTOM_CODE_tienda
@@ -78,26 +74,21 @@ app.tienda = kendo.observable({
             type: 'everlive',
             // data: data,
             transport: {
-                // read: function (options) {
-                //     /* implementation omitted for brevity */
-                //     var settings = {
-                //         "async": true,
-                //         "crossDomain": true,
-                //         "url": servidor + "tienda/listarPorDistrito?id=" + $("#campo").val(),
-                //         "method": "GET",
-                //         "headers": {
-                //             "token": token,
-                //             "cache-control": "no-cache"
-                //         }
-                //     }
-                //     $.ajax(settings).done(function (result) {
-                //         options.success(result);
-                //     });
-                // }
-                read: {
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('token', token)
+                read: function (options) {
+                    /* implementation omitted for brevity */
+                    var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": servidor + "tienda/listarPorDistrito?id=1",
+                        "method": "GET",
+                        "headers": {
+                            "token": token,
+                            "cache-control": "no-cache"
+                        }
                     }
+                    $.ajax(settings).done(function (result) {
+                        options.success(result);
+                    });
                 }
             },
             change: function (e) {
@@ -139,9 +130,11 @@ app.tienda = kendo.observable({
         dataSource = new kendo.data.DataSource(dataSourceOptions),
         tiendaModel = kendo.observable({
             dataSource: dataSource,
+
             searchChange: function (e) {
                 var searchVal = e.target.value,
                     searchFilter;
+
                 if (searchVal) {
                     searchFilter = {
                         field: 'nombre',
@@ -201,29 +194,7 @@ app.tienda = kendo.observable({
             itemClick: function (e) {
                 var dataItem = e.dataItem || tiendaModel.originalItem;
                 app.mobileApp.navigate('#components/tienda/details.html?id=' + dataItem.uid);
-            },
-            detailsShowPorId: function (id) {
-                tiendaModel.setCurrentItemByUidNombre(id);
-            },
-            setCurrentItemByUidNombre: function (e) {
-                var item = e.view.params.id;
-                var settings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": servidor + "tienda/obtenerPorId?id=" + item,
-                    "method": "GET",
-                    "headers": {
-                        "token": token,
-                        "cache-control": "no-cache"
-                    }
-                }
-                $.ajax(settings).done(function (itemModel) {
-                    itemModel.imagenUrl = "styles/img/ic-img-listadobodegas.jpg";
-                    itemModel.direccion = itemModel.direcciones[0].domicilio + " " + itemModel.direcciones[0].numero + itemModel.direcciones[0].distrito.nombre;
-                    tiendaModel.set('originalItem', itemModel);
-                    tiendaModel.set('currentItem', tiendaModel.fixHierarchicalData(itemModel));
-                    return itemModel;
-                });
+
             },
             detailsShow: function (e) {
                 tiendaModel.setCurrentItemByUid(e.view.params.id);
@@ -254,17 +225,13 @@ app.tienda = kendo.observable({
                 return linkChunks[0] + this.get("currentItem." + linkChunks[1]);
             },
             imageBind: function (imageField) {
-                if (imageField.indexOf("|") > -1) { 
+                if (imageField.indexOf("|") > -1) {
                     return processImage(this.get("currentItem." + imageField.split("|")[0]));
                 }
                 return processImage(imageField);
             },
             aceptarModalviewAlert: function () {
                 closeModal('modalview-alert');
-            },
-            verMapaTienda: function(e){
-              	console.log(123456789);
-                console.log(e);
             },
             currentItem: {}
         });
@@ -278,8 +245,9 @@ app.tienda = kendo.observable({
     // }
 
     parent.set('onShow', function (e) {
-        dataSource.transport.options.read.url = servidor + "tienda/listarPorDistrito?id=" + $("#distrito-select-filtro option:selected").val();
-		
+        //$("#distrito-select-filtro option:selected").val()
+        // dataSource.transport.options.read.url = servidor + "tienda/listarPorDistrito?id=" + 1;
+        
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');

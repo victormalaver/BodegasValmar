@@ -142,7 +142,7 @@ app.filtro = kendo.observable({
             $("#listadoTiendasAutocomplete").css("display", "block");
             $(".divSelects").css("display", "none");
         }
-        // kendo.mobile.application.showLoading();
+        kendo.mobile.application.showLoading();
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -157,78 +157,43 @@ app.filtro = kendo.observable({
         $.ajax(settings).done(function (data) {
             var html = [];
             for (var i = 0; i < data.length; i++) {
-                html.push('<li onclick="app.filtro.goToTiendaById(' + data[i].id + ');"><p>' + data[i].nombre.toLowerCase().replace(document.getElementById("searchTienda").value.toLowerCase(), "<strong>" + document.getElementById("searchTienda").value.toLowerCase() + "</strong>") + '</p><h5>' + data[i].domicilio + " " + data[i].numero + ", " + data[i].distrito + '</h5></li>');
-            }
-            if (data.length == 0) {
-                html.push('<li onclick="app.filtro.goToTiendaById(' + data[0].id + ');"><p>' + data[0].nombre.toLowerCase().replace(document.getElementById("searchTienda").value.toLowerCase(), "<strong>" + document.getElementById("searchTienda").value.toLowerCase() + "</strong>") + '</p><h5>' + data[0].domicilio + " " + data[0].numero + ", " + data[0].distrito + '</h5></li>');
+                html.push('<li onclick="app.filtro.goToTienda();"><p>' + data[i].nombre.toLowerCase().replace(document.getElementById("searchTienda").value.toLowerCase(), "<strong>" + document.getElementById("searchTienda").value.toLowerCase() + "</strong>") + '</p><h5>' + data[i].domicilio + " " + data[i].numero + ", " + data[i].distrito + '</h5></li>');
             }
             $("#listadoTiendasAutocomplete").html(html);
-            // kendo.mobile.application.hideLoading();
-        }).fail(function (response) {
-            // kendo.mobile.application.hideLoading();
-            // $("#btn-modalview-alert").attr("onclick", "openModal('modalview-alert')");
-            // switch (response.status) {
-            //     case 404:
-            //         // No existe el servicio
-            //         $("#contentAlertHome").html("El servicio no está disponible");
-            //         $("#emailLogin").parent().addClass("error");
-            //         openModal('modalview-alert-home');
-            //         return false;
-            //         break;
-            //     default:
-            //         // No existe el servicio
-            //         $("#contentAlertHome").html("Error en el servicio");
-            //         $("#emailLogin").parent().addClass("error");
-            //         openModal('modalview-alert-home');
-            //         return false;
-            //         break;
-            // }
-        });
-
-    },
-    goToTiendaById: function (id) {
-        app.mobileApp.navigate('components/tienda/detallePorId.html?id=' + id);
-    },
-    goToTiendaByDistrito: function (e) {
-        kendo.mobile.application.showLoading();
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": servidor + "tienda/listarPorDistrito?id=" + $("#distrito-select-filtro option:selected").val(),
-            "method": "GET",
-            "headers": {
-                "token": token,
-                "cache-control": "no-cache"
-            }
-        }
-
-        $.ajax(settings).done(function (data) {
             kendo.mobile.application.hideLoading();
-            if (data) {
-        app.mobileApp.navigate('components/tienda/view.html');
-            } else {
-                $("#contentAlertHome").html("No existen bodegas en el distrito");
-                openModal('modalview-alert-home');
-            }
-
         }).fail(function (response) {
             kendo.mobile.application.hideLoading();
+            $("#btn-modalview-alert").attr("onclick", "openModal('modalview-alert')");
             switch (response.status) {
                 case 404:
                     // No existe el servicio
                     $("#contentAlertHome").html("El servicio no está disponible");
+                    $("#emailLogin").parent().addClass("error");
                     openModal('modalview-alert-home');
                     return false;
                     break;
                 default:
                     // No existe el servicio
                     $("#contentAlertHome").html("Error en el servicio");
+                    $("#emailLogin").parent().addClass("error");
                     openModal('modalview-alert-home');
                     return false;
                     break;
             }
         });
 
+    },
+    goToTienda: function () {
+
+        app.mobileApp.navigate('components/tienda/details.html');
+        // app.mobileApp.navigate('components/tienda/view.html?filter=' + encodeURIComponent(JSON.stringify({
+        //     field: 'distritoExpanded',
+        //     value: $("#distrito-select-filtro option:selected").val(),
+        //     operator: 'eq'
+        // })));
+    },
+    goToTiendaByDistrito: function (e) {
+        app.mobileApp.navigate('components/tienda/view.html?');
     },
     onShow: function () {},
     afterShow: function () {}

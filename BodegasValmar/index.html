@@ -15,6 +15,8 @@
 </head>
 
 <body id="kendoUiMobileApp">
+    <script src="components/bienvenida/index.js"></script>
+    <script src="components/tienda/seguimiento.js"></script>
     <script src="components/tienda/filtro.js"></script>
     <script src="components/tienda/index.js"></script>
     <script src="components/login/usuario.js"></script>
@@ -34,24 +36,32 @@
             </div>
         </header>
     </div>
-    <div id="appDrawer" data-role="drawer" data-title="Navigation">
-        <header data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
+    <div data-role="layout" data-id="login-layout">
+    </div>
+    <div id="appDrawer" data-role="drawer">
+        <div class="wrapper">
+            <div class="imgperfil">
+                <div><img src="styles/img/drawer/ic-imgperfil.png" style="width:30%;" />
+                    <h3 id="drawerUsername">Hola Mundo</h3>
+                </div>
             </div>
-        </header>
-        <ul id="navigation-container" data-role="listview">
-            <li><a href="components/login/view.html" data-icon="home">Home View</a></li>
-            <li><a href="components/tienda/filtro.html" data-icon="home">Tienda</a></li>
-        </ul>
-        <div data-role="footer">
-            <div class="wrapper">
-                <div class="square-1">1</div>
-                <div class="square-2">2</div>
-                <div class="square-3">3</div>
-                <div class="square-4">4</div>
-                <div class="square-5">5</div>
-                <div class="square-6">6</div>
+            <div class="square-1">
+                <div><i class="flaticon-colors"></i><h3>Productos</h3></div>
+            </div>
+            <div class="square-2" data-link="components/tienda/filtro.html">
+                <div><i class="flaticon-store"></i><h3>Bodegas</h3></div>
+            </div>
+            <div class="square-3" data-link="components/login/usuario.html">
+                <div><i class="flaticon-black"></i><h3>Mi cuenta</h3></div>
+            </div>
+            <div class="square-4">
+                <div><i class="flaticon-map"></i><h3>Mi Localización</h3></div>
+            </div>
+            <div class="square-5">
+                <div><i class="flaticon-invoice"></i><h3>Mis Pedidos</h3></div>
+            </div>
+            <div class="square-6" data-link="components/login/view.html">
+                <div><i class="flaticon-power"></i><h3>Cerrar Sessión</h3></div>
             </div>
         </div>
     </div>

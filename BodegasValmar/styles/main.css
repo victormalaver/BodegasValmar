@@ -291,7 +291,7 @@
 /*******************ESTILOS GENERALES*********************/
 
 @font-face {
-    font-family: "Source Sans Pro Bold";
+    font-family: "Source Sans Pro Black";
     src: url("fonts/SourceSansPro-Black.otf") format("ttf"), url("fonts/SourceSansPro-Black.otf") format("truetype"), url("fonts/SourceSansPro-Black.otf") format("svg")
 }
 @font-face {
@@ -306,51 +306,102 @@
     font-family: "Source Sans Pro Semibold";
     src: url("fonts/SourceSansPro-Semibold.otf") format("ttf"), url("fonts/SourceSansPro-Semibold.otf") format("truetype"), url("fonts/SourceSansPro-Semibold.otf") format("svg")
 }
+@font-face {
+    font-family: "Forte";
+    src: url("fonts/FORTE.TTF") format("ttf"), url("fonts/FORTE.TTF") format("truetype"), url("fonts/FORTE.TTF") format("svg")
+}
 .km-nova .km-content {
     background-color: transparent;
 }
 .center {
     text-align: center;
 }
-#appDrawer{
-    width:20rem;
+.error {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: rgb(247, 74, 48) !important;
+    border-radius: 10px !important;
+    background-color: rgba(30, 29, 29, 0.702) !important;
+}
+.pull-left {
+    float: left !important;
+}
+.pull-right {
+    float: right !important;
+}
+#appDrawer {
+    width: 70%;
+    font-size: 18px;
+    font-family: "Source Sans Pro Bold";
+    text-align: center;
+}
+#appDrawer * {
+    color: rgb(255, 255, 255);
+    border: 0;
+}
+#appDrawer i[class^='flaticon']:before {
+    font-size: 60px;
+    margin: 0;
+}
+#appDrawer .imgperfil {
+    width: 100%;
+    display: table;
+    background-image: url("img/drawer/bg-MenuDesplegablearriba.jpg");
+    background-size: 100% auto;
+    background-size: cover;
+}
+#appDrawer .imgperfil>div {
+    display: table-cell;
+    vertical-align: middle;
+}
+#appDrawer div[class^='square'] {
+    float: left;
+    width: 50%;
+    display: table;
+    font-size: 14px;
+}
+#appDrawer div[class^='square']>div {
+    display: table-cell;
+    vertical-align: middle;
+}
+#appDrawer .wrapper {
+    width: 100%;
+    margin: 0 auto;
 }
 #appDrawer div.square-1,
 #appDrawer div.square-4,
-#appDrawer div.square-5{
-    background-color:#01808c;
-    background-image:url("styles/img/drawer/img-pronto.png");
-    
+#appDrawer div.square-5 {
+    background-color: #01808c;
+    background-image: url("img/drawer/img-pronto.png");
+    background-size: 70% auto;
+    background-repeat: no-repeat;
+    background-position: center;
 }
-#appDrawer div.square-2{
-    background:#00a2b1;
+#appDrawer div.square-1 div,
+#appDrawer div.square-4 div,
+#appDrawer div.square-5 div {
+    opacity: 0.3;
 }
-#appDrawer div.square-3{
-    background:#df9e13;
+#appDrawer div.square-2 {
+    background: #00a2b1;
+    background-image: url("img/drawer/btn-bodegas.png");
+    background-size: 100% auto;
+    background-size: cover;
 }
-#appDrawer div.square-6{
-    background:#8db41d;
+#appDrawer div.square-3 {
+    background: #df9e13;
+    background-image: url("img/drawer/btn-micuenta.png");
+    background-size: 100% auto;
+    background-size: cover;
 }
-
-.wrapper{
-  width: 100%;
-  margin: 0 auto;
-}
-div[class^='square']{
-	float:left;
-	width: 50%;
-	background: olive;
-}
-div[class^='square']:last-child{
-  margin-right:0;
-}
-div[class^='square']:before{
-	content:"";
-	display:block;
-	padding-top:85%;
+#appDrawer div.square-6 {
+    background: #8db41d;
+    background-image: url("img/drawer/btn-cerrarsesion.png");
+    background-size: 100% auto;
+    background-size: cover;
 }
 
-/*******************login->view.html*********************/
+/*******************LOGIN->view.html*********************/
 
 #loginView {
     background: url("img/bg-login.jpg");
@@ -377,27 +428,6 @@ div[class^='square']:before{
 #loginView .cls-6 {
     fill: #00a2b1;
 }
-#loginView .primary.km-widget.km-button {
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(1, 128, 140);
-    border-radius: 50%;
-    background-color: rgb(0, 162, 177);
-    box-shadow: 0px 5px 4px 0px rgba(0, 146, 159, 0.75);
-    width: 80px;
-    height: 80px;
-    color: rgb(239, 239, 239);
-}
-#loginView .km-widget.km-button {
-    border-style: solid;
-    border-width: 6px;
-    border-color: rgb(0, 162, 177);
-    border-radius: 50%;
-    background-color: rgba(0, 162, 177, 0);
-    width: 80px;
-    height: 80px;
-    color: rgb(239, 239, 239);
-}
 #loginView li {
     border-width: 0;
     padding-left: 0px;
@@ -420,9 +450,227 @@ div[class^='square']:before{
 #loginView input::-webkit-input-placeholder {
     color: rgb(239, 239, 239);
 }
+#loginView .primary.km-widget.km-button {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(1, 128, 140);
+    border-radius: 50%;
+    background-color: rgb(0, 162, 177);
+    box-shadow: 0px 5px 4px 0px rgba(0, 146, 159, 0.3);
+    width: 90px;
+    height: 90px;
+}
+#loginView .km-widget.km-button {
+    border-style: solid;
+    border-width: 6px;
+    border-color: rgb(0, 162, 177);
+    border-radius: 50%;
+    background-color: rgba(0, 162, 177, 0);
+    width: 90px;
+    height: 90px;
+}
+#loginView .km-widget.km-button span {
+    line-height: 63px;
+}
+#loginView a {
+    color: rgb(239, 239, 239);
+}
+#loginView .km-footer {
+    display: inherit;
+}
 
-/*******************login->usuario.html*********************/
+/*******************BIENVENIDOS->view.html*********************/
+
+#bienvenidaView {
+    background: url("img/bg-bienvenidos.jpg");
+    background-size: 100% auto;
+    font-size: 18px;
+    font-family: "Source Sans Pro Bold";
+    color: rgb(239, 239, 239);
+    text-align: center;
+}
+#bienvenidaView .km-navbar {
+    /*     background-image: none; */
+    /*     background-color: transparent; */
+}
+#bienvenidaView img {
+    width: 40%;
+}
+#bienvenidaView h1 {
+    top: 35%;
+    font-size: 30px;
+    font-family: "Forte";
+    color: rgb(239, 239, 239);
+    line-height: 0.615;
+}
+#bienvenidaView h3 {
+    color: rgb(239, 239, 239);
+    font-family: "Source Sans Pro Regular";
+    font-size: 14px;
+}
+
+/*******************LOGIN->usuario.html*********************/
 
 #usuarioView {
-    background: url("img/bg-login.jpg");
+    background: url("img/bg-perfilregistro.jpg");
+    background-size: 100% auto;
+    font-size: 18px;
+    font-family: "Source Sans Pro Black";
+    line-height: 1.6;
+}
+#usuarioView .primary.km-widget.km-button {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(1, 128, 140);
+    border-radius: 50%;
+    background-color: rgb(0, 162, 177);
+    box-shadow: 0px 5px 4px 0px rgba(0, 146, 159, 0.3);
+    width: 90px;
+    height: 90px;
+    color: rgb(239, 239, 239);
+}
+#usuarioView li {
+    border-width: 0;
+    padding-left: 0px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+#usuarioView input {
+    width: 100%;
+    padding-left: 40px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.100);
+    border-radius: 10px;
+    background-color: rgba(30, 29, 29, 0.700);
+    height: 40px;
+    font-size: 18px;
+    font-family: "Source Sans Pro Bold";
+    color: rgb(239, 239, 239);
+}
+#usuarioView input::-webkit-input-placeholder {
+    color: rgb(239, 239, 239);
+}
+#usuarioView .km-buttongroup {
+    display: initial;
+}
+#usuarioView .km-buttongroup li {
+    padding: 5px 25px 5px 25px;
+}
+#usuarioView .km-widget.km-button span {
+    line-height: 63px;
+}
+
+/*******************TIENDA->filtro.html*********************/
+
+#filtroTiendaView .km-content {
+    background-color: #fff;
+}
+#filtroTiendaView .flaticon-magnifier {
+    float: left;
+}
+#filtroTiendaView .flaticon-magnifier:before {
+    position: absolute;
+    margin-top: 3px;
+    color: rgb(0, 162, 177);
+}
+#filtroTiendaView #searchTienda {
+    border: solid 1px rgb(239, 239, 239);
+    border-radius: 10px;
+    padding: 10.6px;
+    padding-left: 50px;
+    font-family: "Source Sans Pro Regular";
+    color: rgb(0, 162, 177);
+    width: 85%;
+    font-size: 18px;
+}
+#filtroTiendaView #searchTienda::-webkit-input-placeholder {
+    color: rgb(0, 162, 177);
+}
+#filtroTiendaView .divSelects {
+    line-height: 60px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+#filtroTiendaView .divSelects select {
+    font-family: "Source Sans Pro Regular";
+    font-size: 18px;
+    color: rgb(1, 128, 140);
+    line-height: 1.6;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(176, 184, 185);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding-left: 40px;
+    height: 36px;
+    right: inherit;
+    width: 100%;
+}
+#filtroTiendaView .button-group.button-group-vertical {
+    border-spacing: 0px;
+}
+
+/*******************TIENDA->view.html*********************/
+
+#viewTiendaView {
+    background-color: #fff;
+}
+#viewTiendaView .flaticon-magnifier {
+    float: left;
+}
+#viewTiendaView .flaticon-magnifier:before {
+    position: absolute;
+    margin-top: 3px;
+    color: rgb(0, 162, 177);
+}
+#viewTiendaView #searchTiendaDetalle {
+    border: solid 1px rgb(239, 239, 239);
+    border-radius: 10px;
+    padding: 10.6px;
+    padding-left: 50px;
+    font-family: "Source Sans Pro Regular";
+    color: rgb(0, 162, 177);
+    width: 100%;
+    font-size: 18px;
+}
+#viewTiendaView #searchTiendaDetalle::-webkit-input-placeholder {
+    color: rgb(0, 162, 177);
+}
+#viewTiendaView .km-header .button-group{
+    background-color: #00a2b1;
+}
+
+#viewTiendaView .km-header .button-group .km-button {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(239, 239, 239);
+    border-radius: 27px;
+    background-color: rgba(239, 239, 239,0);
+    font-family: "Source Sans Pro Semibold";  color: rgb(239, 239, 239);
+}
+#viewTiendaView .km-header .button-group .primary.km-button {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(239, 239, 239);
+    border-radius: 27px;
+    background-color: rgb(239, 239, 239);
+    font-family: "Source Sans Pro Black";  color: rgb(0, 162, 177);
+}
+
+/*******************TIENDA->details.html*********************/
+
+#tiendaModelDetailsView {
+    background-color: #e1e8e9;
+}
+#tiendaModelDetailsView li {
+    background-color: #fff;
+    margin: 5%;
+    color: #323b3c;
+    font-family: "Source Sans Pro Regular";
+}
+#tiendaModelDetailsView .flaticon-placeholder {
+    background-color: #00a2b1;
+    margin: 0;
+    padding: 0;
 }

@@ -1,4 +1,4 @@
-<div id="viewTiendaView" data-role="view" data-title="tienda" data-layout="main" data-model="app.tienda" data-init="app.tienda.dataInit" data-show="app.tienda.onShow" data-after-show="app.tienda.afterShow">
+<div id="viewTiendaView"  data-role="view" data-title="tienda" data-layout="main" data-model="app.tienda" data-init="app.tienda.dataInit" data-show="app.tienda.onShow" data-after-show="app.tienda.afterShow">
     <header data-role="header">
         <div data-role="navbar" class="header-text">
             <a data-role="backbutton" data-align="left" class="backButtonWrapper" style="display: none;">Back</a>
@@ -8,10 +8,6 @@
             </div>
             <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
             <a data-role="button" href="components/tienda/filtro.html" data-align="right" data-icon="reply"></a>
-        </div>
-        <div class="button-group">
-            <a data-role="button" data-bind="events: { click: verListaTienda }" class="primary" >Lista de Bodegas</a>
-            <a data-role="button" data-bind="events: { click: tiendaModel.verMapaTienda }">Mapa de Bodegas</a>
         </div>
     </header>
     <ul id="tiendaModelListView" class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="tiendaModelTemplate" data-bind="{ source: tiendaModel.dataSource, events: {click: tiendaModel.itemClick} }" data-pull-to-refresh="true">

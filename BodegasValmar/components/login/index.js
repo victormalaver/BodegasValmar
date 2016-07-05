@@ -1,7 +1,12 @@
 'use strict';
 
 app.login = kendo.observable({
-    onShow: function () {},
+    onShow: function () {
+        var h = $(window).height();
+        var w = $("#appDrawer").width();
+        $(".imgperfil").height(h - (3 * w / 2));
+        $("div[class^='square']").height(w / 2);
+    },
     afterShow: function () {}
 });
 
@@ -63,13 +68,23 @@ app.login = kendo.observable({
             email: '',
             password: '',
             validateData: function (data) {
-                if (!data.email) {
-                    alert('Missing email');
+                // if (!data.email) {
+                //     alert('Missing email');
+                //     return false;
+                // }
+                // if (!data.password) {
+                //     alert('Missing password');
+                //     return false;
+                // }
+				$("#loginView [class^='li-'] input").removeClass("error");
+                if (!$("#loginView .li-1 input").val()) {
+                    $("#loginView .li-1 input").addClass("error");
+                    // alert('Ingrese su correo');
                     return false;
                 }
-
-                if (!data.password) {
-                    alert('Missing password');
+                if (!$("#loginView .li-2 input").val()) {
+                    $("#loginView .li-2 input").addClass("error");
+                    // alert('Ingrese su contraseña');
                     return false;
                 }
 
@@ -99,6 +114,7 @@ app.login = kendo.observable({
                         switch (datos.status) {
                             case 401:
                                 // No autorizado
+                                 $("#loginView .li-2 input").addClass("error");
                                 $("#contentAlertHome").html("Ingrese la contraseña correcta");
                                 $("#passLogin").parent().addClass("error");
                                 openModal('modalview-alert-home');
@@ -111,19 +127,25 @@ app.login = kendo.observable({
                                 openModal('modalview-alert-home');
                                 return false;
                                 break;
+                            case 200:
+                                var data = JSON.parse(datos.responseText);
+                                idUsuario = data.idUsuario;
+                                token = data.token;
+                                $("#drawerUsername").text(data.nombre);
+                                kendo.mobile.application.hideLoading();
+                                app.mobileApp.navigate('components/bienvenida/view.html');
+                                // $("#liInicio").css("display", "none");
+                                // $("#liCerrarSesion").css("display", "block");
+                                // $("#liExposiciones").css("border-bottom", "");
+
+                                $("#divNombreUsuario").html(data.nombre);
+                                $("#usuarioDivDrag").css("display", "block");
+                                break;
                             default:
+                                kendo.mobile.application.hideLoading();
                                 break;
                         }
-                        var data = JSON.parse(datos.responseText);
-                        idUsuario = data.idUsuario;
-                        kendo.mobile.application.hideLoading();
-                        app.mobileApp.navigate('components/tienda/view.html');
-                        $("#liInicio").css("display", "none");
-                        $("#liCerrarSesion").css("display", "block");
-                        $("#liExposiciones").css("border-bottom", "");
 
-                        $("#divNombreUsuario").html(data.nombre);
-                        $("#usuarioDivDrag").css("display", "block");
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         kendo.mobile.application.hideLoading();
@@ -141,48 +163,6 @@ app.login = kendo.observable({
 
     parent.set('loginModel', loginModel);
     parent.set('afterShow', function (e) {
-/*
-        $.ajax({
-            url: servidor + 'authenticate',
-            type: 'POST',
-            dataType: 'json',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader(
-                    'Authorization',
-                    'Basic ' + btoa("victor.malaver@valmar.com.pe" + ":" + "12345"));
-            },
-            complete: function (datos) {
-                console.log("Autenntttt");
-                console.log(datos);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log("csm");
-                console.log(xhr);
-                console.log(ajaxOptions);
-                console.log(thrownError);
-            }
-        });*/
-
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://192.168.1.201:8080/ecommerce/distrito/listar",
-            "method": "GET",
-            "headers": {
-                "token": "2ab2lu73n733mq34o8q974l7uq"
-            }
-        }
-
-        $.ajax(settings).done(function (response) {
-            console.log("Listar distritos");
-            console.log(response);
-        });
-
-
-
-
-
-
         if (e && e.view && e.view.params && e.view.params.logout) {
             loginModel.set('logout', true);
         }
