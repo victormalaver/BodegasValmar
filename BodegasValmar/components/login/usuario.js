@@ -282,6 +282,7 @@ app.usuario = kendo.observable({
                     kendo.mobile.application.hideLoading();
                     $("#contentAlertHome").html("Datos actualizados correctamente");
                     openModal('modalview-alert-home');
+                    $("#drawerUsername").text($("#usuarioView .li-1 input").val());
                 }).fail(function (response) {
                     kendo.mobile.application.hideLoading();
                     switch (response.status) {

@@ -1,6 +1,5 @@
 {
   "CorePlugins": [
-    "cordova-plugin-battery-status",
     "cordova-plugin-camera",
     "cordova-plugin-contacts",
     "cordova-plugin-device",
@@ -19,5 +18,6 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-vibration",
     "cordova-plugin-whitelist"
-  ]
+  ],
+  "CordovaPluginVariables": {}
 }

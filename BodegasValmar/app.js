@@ -21,7 +21,10 @@ var token = "";
                 if (link) {
                     app.mobileApp.navigate(link);
                 }
-
+                if (link == "components/login/view.html") {
+                    idUsuario = "";
+                    token ="";
+                }
             });
             /**/
         });

@@ -3,11 +3,7 @@
 app.tienda = kendo.observable({
     dataInit: function () {},
     onShow: function () {},
-    afterShow: function () {},
-    verListaTienda: function(e){
-        console.log(1111);
-        console.log(e);
-    }
+    afterShow: function () {}
 });
 
 // START_CUSTOM_CODE_tienda
@@ -76,7 +72,6 @@ app.tienda = kendo.observable({
         },
         dataSourceOptions = {
             type: 'everlive',
-            // data: data,
             transport: {
                 // read: function (options) {
                 //     /* implementation omitted for brevity */
@@ -227,6 +222,7 @@ app.tienda = kendo.observable({
             },
             detailsShow: function (e) {
                 tiendaModel.setCurrentItemByUid(e.view.params.id);
+                $("#tiendaModelDetailsView .details-content").css("display", "block");
             },
             setCurrentItemByUid: function (id) {
                 var item = id,
@@ -254,7 +250,7 @@ app.tienda = kendo.observable({
                 return linkChunks[0] + this.get("currentItem." + linkChunks[1]);
             },
             imageBind: function (imageField) {
-                if (imageField.indexOf("|") > -1) { 
+                if (imageField.indexOf("|") > -1) {
                     return processImage(this.get("currentItem." + imageField.split("|")[0]));
                 }
                 return processImage(imageField);
@@ -262,12 +258,164 @@ app.tienda = kendo.observable({
             aceptarModalviewAlert: function () {
                 closeModal('modalview-alert');
             },
-            verMapaTienda: function(e){
-              	console.log(123456789);
-                console.log(e);
+            verListaTienda: function () {
+                $("#verMapaBodega").removeClass("primary");
+                $("#verListaBodega").addClass("primary");
+                $("#mapSeguimiento").css("display", "none");
+                $("#mapSeguimiento").html("");
+            },
+            verListaTiendaDetalle: function () {
+                $("#verMapaBodegaDetalle").removeClass("primary");
+                $("#verListaBodegaDetalle").addClass("primary");
+                $("#mapSeguimientoDetalle").css("display", "none");
+                $("#mapSeguimientoDetalle").html("");
+                $("#tiendaModelDetailsView .details-content").css("display", "block");
+            },
+            verMapaTienda: function (e) {
+                var miLatLong = [];
+                var miArgument = [];
+                var miGPS = navigator.geolocation.getCurrentPosition(function (position) {
+                        miLatLong = [parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)];
+                        miArgument = 'Latitude: ' + position.coords.latitude + '<br />' +
+                            'Longitude: ' + position.coords.longitude + '<br />' +
+                            'Altitude: ' + position.coords.altitude + '<br />' +
+                            'Accuracy: ' + position.coords.accuracy + '<br />' +
+                            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                            'Heading: ' + position.coords.heading + '<br />' +
+                            'Speed: ' + position.coords.speed + '<br />' +
+                            'Timestamp: ' + position.timestamp + '<br />';
+                        if (miLatLong.length > 0) {
+                            cargaPosAlmacenesDespachador(dataSource, miLatLong, miArgument, "");
+                            $("#verMapaBodega").addClass("primary");
+                            $("#verListaBodega").removeClass("primary");
+                        } else {
+                            alert("Error");
+                        }
+                    },
+                    function (error) {
+                        alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+                    });
+
+                if (!miGPS) {
+                    $("#contentAlertHome").html("Encienda su GPS para poder ver el mapa");
+                    openModal('modalview-alert-home');
+                }
+            },
+            verMapaTiendaDetalle: function (e) {
+                var miLatLong = [];
+                var miArgument = [];
+                var miGPS = navigator.geolocation.getCurrentPosition(function (position) {
+                        miLatLong = [parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)];
+                        miArgument = 'Latitude: ' + position.coords.latitude + '<br />' +
+                            'Longitude: ' + position.coords.longitude + '<br />' +
+                            'Altitude: ' + position.coords.altitude + '<br />' +
+                            'Accuracy: ' + position.coords.accuracy + '<br />' +
+                            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                            'Heading: ' + position.coords.heading + '<br />' +
+                            'Speed: ' + position.coords.speed + '<br />' +
+                            'Timestamp: ' + position.timestamp + '<br />';
+                        if (miLatLong.length > 0) {
+                            $("#tiendaModelDetailsView .details-content").css("display", "none");
+                            cargaPosAlmacenesDespachador(dataSource, miLatLong, miArgument, "Detalle");
+                        } else {
+                            alert("csm");
+                        }
+                    },
+                    function (error) {
+                        alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+                    });
+                if (!miGPS) {
+                    $("#contentAlertHome").html("Encienda su GPS para poder ver el mapa");
+                    openModal('modalview-alert-home');
+                }
             },
             currentItem: {}
-        });
+        }),
+        cargaPosAlmacenesDespachador = function (dataSource, miLatLong, miArgument, detalle) {
+
+            $("#mapSeguimiento" + detalle).remove();
+            var alto = $(window).height() - $("#headerSeguimiento").height();
+            var div = $("<div id='mapSeguimiento" + detalle + "' style='width:100%;height:" + alto + "px;' ></div>").text("");
+            $("#divMapSeguimiento" + detalle).after(div);
+
+            //<![CDATA[
+            // var restLatLong = [-12.105753065958925, -77.03500092029572];
+            var iconMiUbicacion = L.icon({
+                iconUrl: 'Mapa/images/marker-icon.png', //iconUrl: 'Mapa/images/markerEntregados.png',
+                // iconRetinaUrl: 'Mapa/images/marker-icon-2x.png',
+                // iconSize: [38, 95], 
+                iconAnchor: [15, 38], //X,Y
+                popupAnchor: [0, -35],
+                shadowUrl: 'Mapa/images/marker-shadow.png',
+                // shadowRetinaUrl: 'my-icon-shadow@2x.png',
+                // shadowSize: [68, 95],
+                // shadowAnchor: [22, 94]
+            });
+
+            var iconSeguimiento = L.icon({
+                iconUrl: 'Mapa/images/ic-pinbodega.png',
+                // iconRetinaUrl: 'my-icon@2x.png',
+                // iconSize: [38, 95],
+                iconAnchor: [15, 38], //X,Y
+                popupAnchor: [0, -35],
+                // // shadowUrl: 'my-icon-shadow.png',
+                // shadowRetinaUrl: 'my-icon-shadow@2x.png',
+                // shadowSize: [68, 95],
+                // shadowAnchor: [22, 94]
+            });
+
+
+
+            var map = new L.map('mapSeguimiento' + detalle, {
+                center: miLatLong,
+                zoom: 15,
+            });
+            L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                //attribution: "Map: Tiles Courtesy of MapQuest (OpenStreetMap, CC-BY-SA)",
+                subdomains: ["otile1", "otile2", "otile3", "otile4"],
+                // maxZoom: 12,
+                // minZoom: 2
+            }).addTo(map);
+
+            var miUbicacion = new L.MarkerClusterGroup();
+            var markerClientes = new L.MarkerClusterGroup();
+            //markers.addLayer(new L.Marker([1, 1]));
+
+
+            miUbicacion.addTo(map);
+            markerClientes.addTo(map);
+
+
+            miUbicacion.addLayer(new L.Marker(miLatLong, {
+                icon: iconMiUbicacion
+            }).bindPopup("<b>Mi pedido está aquí:</b></br>" + miArgument));
+
+
+            var ubicSeguimientos = "";
+
+            dataSource.fetch(function () {
+                for (var i = 0; i < dataSource.total(); i++) { //cantidad de órdenes del cliente
+                    if (dataSource.at(i).direcciones) {
+                        // var pedido = [];
+                        for (var j = 0; j < dataSource.at(i).direcciones.length; j++) {
+                            // pedido.push("</br>" + dataSource.at(i).direcciones[j] + " + " + dataSource.at(i).direcciones[j]);
+                            ubicSeguimientos = dataSource.at(i).direcciones[j].latitud + dataSource.at(i).direcciones[j].longitud; //[43.465187, -80.52237200000002];
+                            var seguimientoLatLong = [parseFloat(dataSource.at(i).direcciones[j].latitud), parseFloat(dataSource.at(i).direcciones[j].longitud)];
+                            markerClientes.addLayer(new L.Marker(seguimientoLatLong, {
+                                icon: iconSeguimiento
+                            }).bindPopup("<big>" + dataSource.at(i).nombre + "</big></br><b><em>" + dataSource.at(i).estado + "</em></b>"));
+
+                            if (detalle == "Detalle") {
+                                map.panTo(new L.LatLng(parseFloat(dataSource.at(i).direcciones[j].latitud), parseFloat(dataSource.at(i).direcciones[j].longitud)));
+                            }
+
+                            // map.setView(new L.LatLng(40.737, -73.923), 8);
+                        }
+                    }
+                }
+
+            });
+        };
 
     // if (typeof dataProvider.sbProviderReady === 'function') {
     //     dataProvider.sbProviderReady(function dl_sbProviderReady() {
@@ -279,7 +427,7 @@ app.tienda = kendo.observable({
 
     parent.set('onShow', function (e) {
         dataSource.transport.options.read.url = servidor + "tienda/listarPorDistrito?id=" + $("#distrito-select-filtro option:selected").val();
-		
+
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
             backbutton = e.view.element && e.view.element.find('header [data-role="navbar"] .backButtonWrapper');

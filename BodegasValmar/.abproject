@@ -16,7 +16,13 @@
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
   "FrameworkVersion": "4.0.0",
   "AndroidPermissions": [
-    "android.permission.INTERNET"
+    "android.permission.ACCESS_COARSE_LOCATION",
+    "android.permission.ACCESS_FINE_LOCATION",
+    "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
+    "android.permission.ACCESS_MOCK_LOCATION",
+    "android.permission.INSTALL_LOCATION_PROVIDER",
+    "android.permission.INTERNET",
+    "android.permission.LOCATION_HARDWARE"
   ],
   "DeviceOrientations": [
     "Portrait"

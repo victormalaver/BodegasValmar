@@ -10,10 +10,16 @@
             <a data-role="button" href="components/tienda/filtro.html" data-align="right" data-icon="reply"></a>
         </div>
         <div class="button-group">
-            <a data-role="button" data-bind="events: { click: verListaTienda }" class="primary" >Lista de Bodegas</a>
-            <a data-role="button" data-bind="events: { click: tiendaModel.verMapaTienda }">Mapa de Bodegas</a>
+            <a id="verListaBodega" data-role="button" data-bind="events: { click: tiendaModel.verListaTienda }" class="primary">Lista de Bodegas</a>
+            <a id="verMapaBodega" data-role="button" data-bind="events: { click: tiendaModel.verMapaTienda }">Mapa de Bodegas</a>
         </div>
     </header>
+    
+    
+    <div id="divMapSeguimiento" align="center"></div>
+    <div id="mapSeguimiento" style="width:100%;"></div>
+    
+    
     <ul id="tiendaModelListView" class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="tiendaModelTemplate" data-bind="{ source: tiendaModel.dataSource, events: {click: tiendaModel.itemClick} }" data-pull-to-refresh="true">
     </ul>
     <script type="text/x-kendo-template" id="tiendaModelTemplate">

@@ -12,11 +12,19 @@
     <script src="kendo/js/kendo.mobile.min.js"></script>
     <script src="app.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/icons/flaticon.css">
+    <!--     MAPA leaflet -->
+    <!--     MAPA leaflet -->
+    <link rel="stylesheet" type="text/css" href="Mapa/leaflet.css">
+    <script type="text/javascript" src="Mapa/leaflet.js"></script>
+    <link rel="stylesheet" type="text/css" href="Mapa/MarkerCluster.css">
+    <script type="text/javascript" src="Mapa/leaflet.markercluster-src.js"></script>
+    <link rel="stylesheet" type="text/css" href="Mapa/MarkerCluster.Default.css">
+    <!--     END MAPA leaflet -->
+    <!--     END MAPA leaflet -->
 </head>
 
 <body id="kendoUiMobileApp">
     <script src="components/bienvenida/index.js"></script>
-    <script src="components/tienda/seguimiento.js"></script>
     <script src="components/tienda/filtro.js"></script>
     <script src="components/tienda/index.js"></script>
     <script src="components/login/usuario.js"></script>
@@ -36,9 +44,7 @@
             </div>
         </header>
     </div>
-    <div data-role="layout" data-id="login-layout">
-    </div>
-    <div id="appDrawer" data-role="drawer">
+    <div id="appDrawer" data-role="drawer" data-swipe-to-open-views='["bienvenidaView","filtroTiendaView","viewTiendaView"]'>
         <div class="wrapper">
             <div class="imgperfil">
                 <div><img src="styles/img/drawer/ic-imgperfil.png" style="width:30%;" />

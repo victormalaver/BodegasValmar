@@ -5,3 +5,4 @@ app.bienvenida = kendo.observable({
     onShow: function () {},
     afterShow: function () {}
 });
+

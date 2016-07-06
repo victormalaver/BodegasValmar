@@ -400,6 +400,25 @@
     background-size: 100% auto;
     background-size: cover;
 }
+#modalview-alert-home {
+    background-color: transparent;
+    background: url("img/bg-pop.jpg");
+    background-size: 100% auto;
+}
+#modalview-alert-home .km-navbar {
+    background-image: none;
+    background-color: transparent;
+}
+#modalview-alert-home li {
+    border: 0;
+}
+#modalview-alert-home .km-button {
+    background-color: transparent;
+    border-color: #fff;
+}
+#modalview-alert-home a{
+    border-radius: 27px;
+}
 
 /*******************LOGIN->view.html*********************/
 
@@ -637,17 +656,17 @@
 #viewTiendaView #searchTiendaDetalle::-webkit-input-placeholder {
     color: rgb(0, 162, 177);
 }
-#viewTiendaView .km-header .button-group{
+#viewTiendaView .km-header .button-group {
     background-color: #00a2b1;
 }
-
 #viewTiendaView .km-header .button-group .km-button {
     border-style: solid;
     border-width: 2px;
     border-color: rgb(239, 239, 239);
     border-radius: 27px;
-    background-color: rgba(239, 239, 239,0);
-    font-family: "Source Sans Pro Semibold";  color: rgb(239, 239, 239);
+    background-color: rgba(239, 239, 239, 0);
+    font-family: "Source Sans Pro Semibold";
+    color: rgb(239, 239, 239);
 }
 #viewTiendaView .km-header .button-group .primary.km-button {
     border-style: solid;
@@ -655,7 +674,8 @@
     border-color: rgb(239, 239, 239);
     border-radius: 27px;
     background-color: rgb(239, 239, 239);
-    font-family: "Source Sans Pro Black";  color: rgb(0, 162, 177);
+    font-family: "Source Sans Pro Black";
+    color: rgb(0, 162, 177);
 }
 
 /*******************TIENDA->details.html*********************/
@@ -669,8 +689,25 @@
     color: #323b3c;
     font-family: "Source Sans Pro Regular";
 }
-#tiendaModelDetailsView .flaticon-placeholder {
+
+#tiendaModelDetailsView .km-header .button-group {
     background-color: #00a2b1;
-    margin: 0;
-    padding: 0;
+}
+#tiendaModelDetailsView .km-header .button-group .km-button {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(239, 239, 239);
+    border-radius: 27px;
+    background-color: rgba(239, 239, 239, 0);
+    font-family: "Source Sans Pro Semibold";
+    color: rgb(239, 239, 239);
+}
+#tiendaModelDetailsView .km-header .button-group .primary.km-button {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(239, 239, 239);
+    border-radius: 27px;
+    background-color: rgb(239, 239, 239);
+    font-family: "Source Sans Pro Black";
+    color: rgb(0, 162, 177);
 }
