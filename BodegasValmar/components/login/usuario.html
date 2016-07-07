@@ -9,13 +9,13 @@
         </br>
         <form>
             <ul data-role="listview" data-style="inset">
-                <li class="li-1">
+                <li class="li-1" style="display:none;">
                     <input placeholder="Nombre" type="text">
                 </li>
-                <li class="li-2">
+                <li class="li-2" style="display:none;">
                     <input placeholder="Apellidos" type="text">
                 </li>
-                <li style="padding-right: 0;font-size:18px;">
+                <li style="padding-right: 0; font-size:18px; display:none;">
                     <div class="pull-left" style="padding-left: 40px;">Género</div>
                     <div class="pull-right">
                         <ul id="generoUsuario" data-role="buttongroup" data-index="0">
@@ -25,13 +25,21 @@
                     </div>
                 </li>
                 <li class="li-4">
+                    <div class="icon-login"><i class="flaticon-internet"></i></div>
                     <input placeholder="Correo" type="email" required>
                 </li>
                 <li class="li-5">
+                    <div class="icon-login"><i class="flaticon-security"></i></div>
                     <input placeholder="Contraseña" type="password">
                 </li>
                 <li class="li-6">
+                    <div class="icon-login"><i class="flaticon-security"></i></div>
                     <input placeholder="Confirmar Contraseña" type="password">
+                </li>
+                <li class="li-7">
+                    <label>
+                        <input id="terminos" required type="checkbox"><span style="color: rgb(239, 239, 239);">Acepto los términos y condiciones</span>
+                    </label>
                 </li>
             </ul>
             </br>

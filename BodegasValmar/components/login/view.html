@@ -16,16 +16,18 @@
         <form>
             <ul data-role="listview" data-style="inset">
                 <li class="li-1">
+                    <div class="icon-login"><i class="flaticon-internet"></i></div>
                     <input type="email" placeholder="Correo" data-bind="value: loginModel.email" required autofocus>
                 </li>
                 <li class="li-2">
+                    <div class="icon-login"><i class="flaticon-security"></i></div>
                     <input type="password" placeholder="Contraseña" data-bind="value: loginModel.password" required>
                 </li>
             </ul>
         	</br>
             <div class="center">
                 <a data-role="button" class="primary" data-bind="events: { click: loginModel.signin }">Entrar</a>
-                <a data-role="button" data-bind="events: { click: loginModel.toggleView }">Guía</a>
+                <a data-role="button" id="txt-login" data-bind="events: { click: loginModel.toggleView }">Guía</a>
                 </br>
         		</br>
                 <a data-bind="events: { click: loginModel.toggleView }">Registrarse</a>
