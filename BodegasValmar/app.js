@@ -23,8 +23,12 @@ var token = "";
                 }
                 if (link == "components/login/view.html") {
                     idUsuario = "";
-                    token ="";
+                    token = "";
                 }
+            });
+            $('div.drawerHeader').click(function (e) {
+                var link = e.currentTarget.dataset.link;
+                app.mobileApp.navigate(link);
             });
             /**/
         });
@@ -87,6 +91,7 @@ var token = "";
 
 
 function closeModal(modal) {
+    // $("#" + modal + " .primary.km-widget.km-button").removeAttr("onclick");
     $("#" + modal).kendoMobileModalView("close");
 }
 
@@ -94,4 +99,5 @@ function openModal(modal) {
     var mv = $("#" + modal).data("kendoMobileModalView");
     mv.shim.popup.options.animation.open.effects = "zoom";
     mv.open();
+    // setTimeout($("#" + modal + " .primary.km-widget.km-button").attr("onclick", "closeModal('" + modal + "')"), 1500);
 }

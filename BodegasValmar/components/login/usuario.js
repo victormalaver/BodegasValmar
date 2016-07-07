@@ -3,7 +3,6 @@
 app.usuario = kendo.observable({
     onShow: function () {
         if (idUsuario !== "") {
-            $("#usuarioView .li-7").css("display", "none");
             // ObternetPorID:
             var settings = {
                 "async": true,
@@ -17,8 +16,8 @@ app.usuario = kendo.observable({
             }
 
             $.ajax(settings).done(function (data) {
-                $("#usuarioView .li-1 input").val(data.nombre);
-                $("#usuarioView .li-2 input").val(data.apellido);
+                $("#perfilView .li-1 input").val(data.nombre);
+                $("#perfilView .li-2 input").val(data.apellido);
 
                 $("#generoUsuario").kendoMobileButtonGroup({
                     select: function (e) {
@@ -26,11 +25,11 @@ app.usuario = kendo.observable({
                     },
                     index: (data.genero == "M" ? 0 : 1)
                 });
-                $("#usuarioView .li-4 input").val(data.correo);
-                $("#usuarioView .li-5 input").val(data.password);
-                $("#usuarioView .li-6 input").val(data.password);
+                $("#perfilView .li-4 input").val(data.correo);
+                $("#perfilView .li-5 input").val(data.password);
+                $("#perfilView .li-6 input").val(data.password);
 
-                $("#usuarioView .li-8").css("display", "block");
+                $("#perfilView .li-8").css("display", "block");
 
                 // var html = [];
                 // for (var i = 0; i < data.length; i++) {
@@ -59,9 +58,6 @@ app.usuario = kendo.observable({
             });
             // HttpStatus: 200 OK
             // 404 NOT FOUND
-        } else {
-            $("#usuarioView .li-7").css("display", "block");
-            $("#usuarioView .li-8").css("display", "none");
         }
     },
     afterShow: function () {}
@@ -233,9 +229,19 @@ app.usuario = kendo.observable({
                             openModal('modalview-alert-home');
                             return false;
                             break;
+                        case 408:
+                            $("#contentAlertHome").html("Error: El servicio no responde");
+                            openModal('modalview-alert-home');
+                            return false;
+                            break;
+                        case 500:
+                            $("#contentAlertHome").html("Error interno del servidor");
+                            openModal('modalview-alert-home');
+                            return false;
+                            break;
                         default:
                             // No existe el servicio
-                            $("#contentAlertHome").html("Error en el servicio");
+                            $("#contentAlertHome").html("Error");
                             openModal('modalview-alert-home');
                             return false;
                             break;

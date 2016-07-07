@@ -318,7 +318,7 @@ app.tienda = kendo.observable({
                             $("#tiendaModelDetailsView .details-content").css("display", "none");
                             cargaPosAlmacenesDespachador(dataSource, miLatLong, miArgument, "Detalle");
                         } else {
-                            alert("csm");
+                            alert("Error");
                         }
                     },
                     function (error) {
@@ -334,7 +334,7 @@ app.tienda = kendo.observable({
         cargaPosAlmacenesDespachador = function (dataSource, miLatLong, miArgument, detalle) {
 
             $("#mapSeguimiento" + detalle).remove();
-            var alto = $(window).height() - $("#headerSeguimiento").height();
+            var alto = $(window).height() - $("#"+(detalle=="Detalle"?"tiendaModelDetailsView":"viewTiendaView")+" .km-header").height();
             var div = $("<div id='mapSeguimiento" + detalle + "' style='width:100%;height:" + alto + "px;' ></div>").text("");
             $("#divMapSeguimiento" + detalle).after(div);
 

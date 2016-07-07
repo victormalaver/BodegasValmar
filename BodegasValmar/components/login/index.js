@@ -76,7 +76,7 @@ app.login = kendo.observable({
                 //     alert('Missing password');
                 //     return false;
                 // }
-				$("#loginView [class^='li-'] input").removeClass("error");
+                $("#loginView [class^='li-'] input").removeClass("error");
                 if (!$("#loginView .li-1 input").val()) {
                     $("#loginView .li-1 input").addClass("error");
                     // alert('Ingrese su correo');
@@ -110,20 +110,33 @@ app.login = kendo.observable({
                             'Basic ' + btoa(email + ":" + password));
                     },
                     complete: function (datos) {
+                        kendo.mobile.application.hideLoading();
                         $("#emailLogin, #passLogin").parent().removeClass("error");
                         switch (datos.status) {
                             case 401:
                                 // No autorizado
-                                 $("#loginView .li-2 input").addClass("error");
+                                $("#loginView .li-2 input").addClass("error");
                                 $("#contentAlertHome").html("Ingrese la contraseña correcta");
                                 $("#passLogin").parent().addClass("error");
                                 openModal('modalview-alert-home');
                                 return false;
                                 break;
                             case 404:
-                                // No encontrado
+                                // No existe el usuario
                                 $("#contentAlertHome").html("Usuario no registrado");
-                                $("#emailLogin").parent().addClass("error");
+                                $("#loginView .li-1 input").addClass("error");
+                                openModal('modalview-alert-home');
+                                return false;
+                                break;
+                            case 204:
+                                // No existe el usuario
+                                $("#contentAlertHome").html("Usuario no registrado");
+                                $("#loginView .li-1 input").addClass("error");
+                                openModal('modalview-alert-home');
+                                return false;
+                                break;
+                            case 500:
+                                $("#contentAlertHome").html("Error interno del servidor");
                                 openModal('modalview-alert-home');
                                 return false;
                                 break;
@@ -132,20 +145,20 @@ app.login = kendo.observable({
                                 idUsuario = data.idUsuario;
                                 token = data.token;
                                 $("#drawerUsername").text(data.nombre);
-                                kendo.mobile.application.hideLoading();
                                 app.mobileApp.navigate('components/bienvenida/view.html');
                                 // $("#liInicio").css("display", "none");
                                 // $("#liCerrarSesion").css("display", "block");
                                 // $("#liExposiciones").css("border-bottom", "");
-
                                 $("#divNombreUsuario").html(data.nombre);
                                 $("#usuarioDivDrag").css("display", "block");
                                 break;
                             default:
-                                kendo.mobile.application.hideLoading();
+                                // Sin internet
+                                $("#contentAlertHome").html("Error en la conexión de datos");
+                                openModal('modalview-alert-home');
+                                return false;
                                 break;
                         }
-
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         kendo.mobile.application.hideLoading();

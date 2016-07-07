@@ -23,7 +23,7 @@ app.filtro = kendo.observable({
                 html.push('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
             }
             $("#departamento-select-filtro").html(html);
-            $("#departamento-select-filtro").val(1);
+            $("#departamento-select-filtro").val(15);
             app.filtro.getProvincias();
         }).fail(function (response) {
             kendo.mobile.application.hideLoading();

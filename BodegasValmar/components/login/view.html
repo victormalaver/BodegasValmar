@@ -1,5 +1,5 @@
 <div id="loginView" data-role="view" data-model="app.login" data-show="app.login.onShow" data-after-show="app.login.afterShow">
-<!--     <header data-role="header">
+    <header data-role="header">
         <svg width="100%" viewBox="0 0 640 72">
             <ellipse class="cls-1" cx="106.5" cy="42.5" rx="106.5" ry="29.5"/>
             <ellipse class="cls-2" cx="319.5" cy="42.5" rx="106.5" ry="29.5"/>
@@ -8,7 +8,7 @@
             <rect class="cls-5" x="213.531" y="-16" width="212.938" height="58"/>
             <rect class="cls-6" x="427.063" y="-16" width="212.937" height="58"/>
         </svg >
-    </header> -->
+    </header>
     <div class="signin-view">
         <h1 class="center">
             <img src="styles/img/ic-bodegasapp.png" style="width:75%;"/>
@@ -30,13 +30,12 @@
         		</br>
                 <a data-bind="events: { click: loginModel.toggleView }">Registrarse</a>
             </div>
-        
         </form>
     </div>
     <div class="offline" align="center" style="display:none;">
         You are currently offline. Before using this app in offline mode you must initialize it while you are online
     </div>
-<!--     <footer data-role="footer">
+    <footer data-role="footer">
         <svg id="Grupo_2" width="100%" viewBox="0 0 640 87" style="right: 0;bottom: 0;left: 0;">
             <rect  class="cls-1" width="212.938" height="127"/>
             <rect class="cls-2" x="213.531" width="212.938" height="127"/>
@@ -45,9 +44,9 @@
             <rect  class="cls-5" x="213.531" width="212.938" height="24"/>
             <rect  class="cls-6" x="427.063" width="212.937" height="24"/>
         </svg >
-    </footer> -->
+    </footer>
 </div>
-<div data-role="modalview" id="modalview-alert-home" style="width: 90%;">
+<div data-role="modalview" id="modalview-alert-home" style="width: 70%;">
     <div data-role="header">
         <div data-role="navbar">
             <span>Mensaje</span>
@@ -58,6 +57,6 @@
         <li id="contentAlertHome" class="form-content-item"></li>
     </ul>
     <div class="button-group">
-        <a data-role="button" class="primary" onclick="closeModal('modalview-alert-home')">Aceptar</a>
+        <a data-role="button" class="primary"  onclick="closeModal('modalview-alert-home')" >Aceptar</a>
     </div>
 </div>
