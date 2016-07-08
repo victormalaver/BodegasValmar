@@ -15,20 +15,23 @@
     
     <div class="details-content">
         <div class="km-listview-wrapper">
+            <span id="li-libre">
+                <span class="txt-azul" data-bind="text: currentItem.nombre"></span>
+            </span>
             <ul class="km-listview km-list km-listinset details-fields">
 <!--                 <h3 data-bind="text: currentItem.nombre"></h3> -->
                 <img data-bind="attr: { src: currentItem.imagenUrl }" width="100%" height="auto">
                 <li>
-                    <span class="pull-left">Dirección</span>
-                    <span class="pull-right" data-bind="text: currentItem.direccion"></span>
+                    <span class="pull-left txt-gris" >Dirección</span>
+                    <span class="pull-right txt-azul" data-bind="text: currentItem.direccion"></span>
                 </li>
                 <li>
-                    <span class="pull-left">Telefono</span>
-                    <span class="pull-right" data-bind="text: currentItem.telefono_local"></span>
+                    <span class="pull-left txt-gris">Telefono</span>
+                    <span class="pull-right txt-azul" data-bind="text: currentItem.telefono_local"></span>
                 </li>
                 <li>
-                    <span class="pull-left">Movil</span>
-                    <span class="pull-right" data-bind="text: currentItem.telefono_movil"></span>
+                    <span class="pull-left txt-gris">Movil</span>
+                    <span class="pull-right txt-azul" data-bind="text: currentItem.telefono_movil"></span>
                 </li>
             </ul>
         </div>

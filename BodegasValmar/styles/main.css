@@ -785,7 +785,10 @@
     color: #323b3c;
     font-family: "Source Sans Pro Regular";
 }
-
+#tiendaModelDetailsView #li-libre {
+    margin 0% !important;
+    width: 100% !important;
+}
 #tiendaModelDetailsView .km-header .button-group {
     background-color: #00a2b1;
 }
@@ -807,6 +810,17 @@
     font-family: "Source Sans Pro Black";
     color: rgb(0, 162, 177);
 }
+#tiendaModelDetailsView .txt-gris{
+    color: #a3a9ac;
+    font-size: 20px;
+    font-family: "Source Sans Pro Semibold";
+}
+#tiendaModelDetailsView .txt-azul{
+    font-size: 20px;
+    font-family: "Source Sans Pro Bold";
+    color: rgb(0, 162, 177);
+}
+
 /*******************GENERAL*********************/
 .icon-login {
     width: 40px;
