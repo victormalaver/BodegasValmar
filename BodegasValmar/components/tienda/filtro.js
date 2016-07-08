@@ -190,45 +190,42 @@ app.filtro = kendo.observable({
         app.mobileApp.navigate('components/tienda/detallePorId.html?id=' + id);
     },
     goToTiendaByDistrito: function (e) {
-        kendo.mobile.application.showLoading();
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": servidor + "tienda/listarPorDistrito?id=" + $("#distrito-select-filtro option:selected").val(),
-            "method": "GET",
-            "headers": {
-                "token": token,
-                "cache-control": "no-cache"
-            }
-        }
-
-        $.ajax(settings).done(function (data) {
-            kendo.mobile.application.hideLoading();
-            if (data) {
-        app.mobileApp.navigate('components/tienda/view.html');
-            } else {
-                $("#contentAlertHome").html("No existen bodegas en el distrito");
-                openModal('modalview-alert-home');
-            }
-
-        }).fail(function (response) {
-            kendo.mobile.application.hideLoading();
-            switch (response.status) {
-                case 404:
-                    // No existe el servicio
-                    $("#contentAlertHome").html("El servicio no está disponible");
-                    openModal('modalview-alert-home');
-                    return false;
-                    break;
-                default:
-                    // No existe el servicio
-                    $("#contentAlertHome").html("Error en el servicio");
-                    openModal('modalview-alert-home');
-                    return false;
-                    break;
-            }
-        });
-
+        // kendo.mobile.application.showLoading();
+        // var settings = {
+        //     "async": true,
+        //     "crossDomain": true,
+        //     "url": servidor + "tienda/listarPorDistrito?id=" + $("#distrito-select-filtro option:selected").val(),
+        //     "method": "GET",
+        //     "headers": {
+        //         "token": token,
+        //         "cache-control": "no-cache"
+        //     }
+        // }
+        // $.ajax(settings).done(function (data) {
+        //     kendo.mobile.application.hideLoading();
+        //     if (data) {
+                app.mobileApp.navigate('components/tienda/view.html');
+        //     } else {
+        //         $("#contentAlertHome").html("No existen bodegas en el distrito");
+        //         openModal('modalview-alert-home');
+        //     }
+        // }).fail(function (response) {
+        //     kendo.mobile.application.hideLoading();
+        //     switch (response.status) {
+        //         case 404:
+        //             // No existe el servicio
+        //             $("#contentAlertHome").html("El servicio no está disponible");
+        //             openModal('modalview-alert-home');
+        //             return false;
+        //             break;
+        //         default:
+        //             // No existe el servicio
+        //             $("#contentAlertHome").html("Error en el servicio");
+        //             openModal('modalview-alert-home');
+        //             return false;
+        //             break;
+        //     }
+        // });
     },
     onShow: function () {},
     afterShow: function () {}

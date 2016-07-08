@@ -255,6 +255,7 @@ app.usuario = kendo.observable({
                 // provider.Users.register(email, password, attrs, successHandler, init);
             },
             updateUsuario: function () {
+                closeModal('modalview-alert-perfil');
                 // Actualizar USUARIO:
                 var data = {
                     "id": idUsuario,

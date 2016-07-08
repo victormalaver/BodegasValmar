@@ -14,20 +14,18 @@
             <a id="verMapaBodega" data-role="button" data-bind="events: { click: tiendaModel.verMapaTienda }">Mapa de Bodegas</a>
         </div>
     </header>
-    
-    
-    <div id="divMapSeguimiento" align="center"></div>
-    <div id="mapSeguimiento" style="width:100%;"></div> 
-    
-    
+    <header data-role="header">
+        <div id="divMapSeguimiento" align="center"></div>
+        <div id="mapSeguimiento" style="width:100%;"></div>
+    </header>
     <ul id="tiendaModelListView" class="masterDetailView" data-role="listview" data-auto-bind="false" data-style="" data-template="tiendaModelTemplate" data-bind="{ source: tiendaModel.dataSource, events: {click: tiendaModel.itemClick} }" data-pull-to-refresh="true">
     </ul>
     <script type="text/x-kendo-template" id="tiendaModelTemplate">
         <div class="image-with-text">
             <img src="styles/img/ic-img-listadobodegas.jpg">
-            <h3><strong>#: data['nombre'] #</strong></h3>
-            <h3>#: data['telefono_local'] #</h3>
-            <h3>#: data['direcciones'][0].domicilio # #: data['direcciones'][0].numero # #: data['direcciones'][0].distrito.nombre #</h3>
+            <h3><strong class="font-azul">#: data['nombre'] #</strong></h3>
+            <h3><tag class="font-gris">Telef: </tag><strong>#: data['nombre'] #</strong></h3>
+            <h3><tag class="font-gris">Dirección: </tag><strong>#: data['domicilio'] # #: data['numero'] #</strong></h3>
         </div>
     </script>
 </div>

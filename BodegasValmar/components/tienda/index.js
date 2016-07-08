@@ -72,29 +72,30 @@ app.tienda = kendo.observable({
         },
         dataSourceOptions = {
             type: 'everlive',
-            transport: {
-                // read: function (options) {
-                //     /* implementation omitted for brevity */
-                //     var settings = {
-                //         "async": true,
-                //         "crossDomain": true,
-                //         "url": servidor + "tienda/listarPorDistrito?id=" + $("#campo").val(),
-                //         "method": "GET",
-                //         "headers": {
-                //             "token": token,
-                //             "cache-control": "no-cache"
-                //         }
-                //     }
-                //     $.ajax(settings).done(function (result) {
-                //         options.success(result);
-                //     });
-                // }
-                read: {
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('token', token)
-                    }
-                }
-            },
+            // transport: {
+            //     // read: function (options) {
+            //     //     /* implementation omitted for brevity */
+            //     //     var settings = {
+            //     //         "async": true,
+            //     //         "crossDomain": true,
+            //     //         "url": servidor + "tienda/listarPorDistrito?id=" + $("#campo").val(),
+            //     //         "method": "GET",
+            //     //         "headers": {
+            //     //             "token": token,
+            //     //             "cache-control": "no-cache"
+            //     //         }
+            //     //     }
+            //     //     $.ajax(settings).done(function (result) {
+            //     //         options.success(result);
+            //     //     });
+            //     // }
+            //     read: {
+            //         beforeSend: function (xhr) {
+            //             xhr.setRequestHeader('token', token)
+            //         }
+            //     }
+            // },
+            data: [{"id":1,"nombre":"Mi Tienda","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467305291000,"fechaModificacion":1467305291000,"direcciones":[{"id":1,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"874","latitud":"-12.11928 ","longitud":"-77.02910","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]},{"id":2,"nombre":"Mi Tienda 2","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467649336000,"fechaModificacion":1467649336000,"direcciones":[{"id":2,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"974","latitud":"-12.11928 ","longitud":"-77.02887","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]},{"id":3,"nombre":"Mi Tienda 3","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467649336000,"fechaModificacion":1467649336000,"direcciones":[{"id":3,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"974","latitud":"-12.11928 ","longitud":"-77.02887","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]},{"id":4,"nombre":"Mi Tienda 4","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467649336000,"fechaModificacion":1467649336000,"direcciones":[{"id":4,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"974","latitud":"-12.11928 ","longitud":"-77.02897","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]},{"id":5,"nombre":"Mi Tienda 5","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467649336000,"fechaModificacion":1467649336000,"direcciones":[{"id":5,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"974","latitud":"-12.11928 ","longitud":"-77.02117","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]},{"id":6,"nombre":"Mi Tienda 6","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467649336000,"fechaModificacion":1467649336000,"direcciones":[{"id":6,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"974","latitud":"-12.11938 ","longitud":"-77.02887","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]},{"id":7,"nombre":"Mi Tienda 7","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467649336000,"fechaModificacion":1467649336000,"direcciones":[{"id":7,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"974","latitud":"-12.11948 ","longitud":"-77.02887","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]},{"id":8,"nombre":"Mi Tienda 8","ruc":"1045645665464","telefono_local":"4236542","telefono_movil":"954645546","afiliacion":1,"afiliacion_valor":20,"metodoPagos":[],"costoMinimo":10,"estadoAbierto":1,"imagen":null,"usuario":{"id":1,"nombre":"JOSUE","apellido":"MOSQUERA","correo":"josue.mosquera@valmar.com.pe","password":"12345","genero":"M","tipo":1,"estado":1,"fechaRegistro":1467305290000,"fechaModificacion":1467305290000},"estado":1,"fechaRegistro":1467649336000,"fechaModificacion":1467649336000,"direcciones":[{"id":8,"referencia":"Plaza Las Banderas","domicilio":"Av. Mariano Cornejo","numero":"974","latitud":"-12.11958 ","longitud":"-77.02887","activo":1,"distrito":{"id":1,"nombre":"CHACHAPOYAS","provincia":{"id":1,"nombre":"CHACHAPOYAS ","departamento":{"id":1,"nombre":"AMAZONAS"}}}}]}],
             change: function (e) {
                 var data = this.data();
                 for (var i = 0; i < data.length; i++) {
@@ -107,13 +108,13 @@ app.tienda = kendo.observable({
                 }
             },
             error: function (e) {
-
                 if (e.xhr) {
                     alert(JSON.stringify(e.xhr));
                 }
             },
             schema: {
                 model: {
+                    id: "id",
                     fields: {
                         'nombre': {
                             field: 'nombre',
@@ -222,7 +223,8 @@ app.tienda = kendo.observable({
             },
             detailsShow: function (e) {
                 tiendaModel.setCurrentItemByUid(e.view.params.id);
-                $("#tiendaModelDetailsView .details-content").css("display", "block");
+                alert(e.view.params.id);
+                $("#tiendaModelDetailsView .km-listview-wrapper").css("display", "block");
             },
             setCurrentItemByUid: function (id) {
                 var item = id,
@@ -232,7 +234,7 @@ app.tienda = kendo.observable({
                 if (!itemModel.nombre) {
                     itemModel.nombre = String.fromCharCode(160);
                 }
-
+				$("#verMapaBodegaDetalle").attr("name",itemModel.id);
                 itemModel.imagenUrl = "styles/img/ic-img-listadobodegas.jpg";
                 itemModel.direccion = itemModel.direcciones[0].domicilio + " " + itemModel.direcciones[0].numero + itemModel.direcciones[0].distrito.nombre;
 
@@ -259,32 +261,27 @@ app.tienda = kendo.observable({
                 closeModal('modalview-alert');
             },
             verListaTienda: function () {
+                $("#viewTiendaView .km-listview-wrapper").css("display", "block");
                 $("#verMapaBodega").removeClass("primary");
                 $("#verListaBodega").addClass("primary");
                 $("#mapSeguimiento").css("display", "none");
                 $("#mapSeguimiento").html("");
             },
             verListaTiendaDetalle: function () {
+                $("#tiendaModelDetailsView .km-listview-wrapper").css("display", "block");
                 $("#verMapaBodegaDetalle").removeClass("primary");
                 $("#verListaBodegaDetalle").addClass("primary");
                 $("#mapSeguimientoDetalle").css("display", "none");
                 $("#mapSeguimientoDetalle").html("");
-                $("#tiendaModelDetailsView .details-content").css("display", "block");
             },
             verMapaTienda: function (e) {
                 var miLatLong = [];
                 var miArgument = [];
                 var miGPS = navigator.geolocation.getCurrentPosition(function (position) {
                         miLatLong = [parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)];
-                        miArgument = 'Latitude: ' + position.coords.latitude + '<br />' +
-                            'Longitude: ' + position.coords.longitude + '<br />' +
-                            'Altitude: ' + position.coords.altitude + '<br />' +
-                            'Accuracy: ' + position.coords.accuracy + '<br />' +
-                            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
-                            'Heading: ' + position.coords.heading + '<br />' +
-                            'Speed: ' + position.coords.speed + '<br />' +
-                            'Timestamp: ' + position.timestamp + '<br />';
+                        miArgument = "";
                         if (miLatLong.length > 0) {
+                            $("#viewTiendaView .km-listview-wrapper").css("display", "none");
                             cargaPosAlmacenesDespachador(dataSource, miLatLong, miArgument, "");
                             $("#verMapaBodega").addClass("primary");
                             $("#verListaBodega").removeClass("primary");
@@ -295,7 +292,6 @@ app.tienda = kendo.observable({
                     function (error) {
                         alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
                     });
-
                 if (!miGPS) {
                     $("#contentAlertHome").html("Encienda su GPS para poder ver el mapa");
                     openModal('modalview-alert-home');
@@ -306,17 +302,18 @@ app.tienda = kendo.observable({
                 var miArgument = [];
                 var miGPS = navigator.geolocation.getCurrentPosition(function (position) {
                         miLatLong = [parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)];
-                        miArgument = 'Latitude: ' + position.coords.latitude + '<br />' +
-                            'Longitude: ' + position.coords.longitude + '<br />' +
-                            'Altitude: ' + position.coords.altitude + '<br />' +
-                            'Accuracy: ' + position.coords.accuracy + '<br />' +
-                            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
-                            'Heading: ' + position.coords.heading + '<br />' +
-                            'Speed: ' + position.coords.speed + '<br />' +
-                            'Timestamp: ' + position.timestamp + '<br />';
+                        miArgument = "";
                         if (miLatLong.length > 0) {
-                            $("#tiendaModelDetailsView .details-content").css("display", "none");
-                            cargaPosAlmacenesDespachador(dataSource, miLatLong, miArgument, "Detalle");
+                            $("#tiendaModelDetailsView .km-listview-wrapper").css("display", "none");
+                            dataSource.fetch(function() {
+                              	var dataItem = dataSource.get($("#verMapaBodegaDetalle").attr("name"));
+                                var dataSourceDetalle = new kendo.data.DataSource({
+                                  data: [{ nombre:dataItem.nombre ,direcciones: dataItem.direcciones, estado: dataItem.estado, latitud: dataItem.latitud, longitud: dataItem.longitud },]
+                                });
+                                cargaPosAlmacenesDespachador(dataSourceDetalle, miLatLong, miArgument, "Detalle");
+                                $("#verMapaBodegaDetalle").addClass("primary");
+                            	$("#verListaBodegaDetalle").removeClass("primary");
+                            });
                         } else {
                             alert("Error");
                         }
@@ -388,8 +385,7 @@ app.tienda = kendo.observable({
 
             miUbicacion.addLayer(new L.Marker(miLatLong, {
                 icon: iconMiUbicacion
-            }).bindPopup("<b>Mi pedido está aquí:</b></br>" + miArgument));
-
+            }).bindPopup("<b>Mi ubicación</b></br>" + miArgument));
 
             var ubicSeguimientos = "";
 
@@ -403,7 +399,7 @@ app.tienda = kendo.observable({
                             var seguimientoLatLong = [parseFloat(dataSource.at(i).direcciones[j].latitud), parseFloat(dataSource.at(i).direcciones[j].longitud)];
                             markerClientes.addLayer(new L.Marker(seguimientoLatLong, {
                                 icon: iconSeguimiento
-                            }).bindPopup("<big>" + dataSource.at(i).nombre + "</big></br><b><em>" + dataSource.at(i).estado + "</em></b>"));
+                            }).bindPopup("<big>" + dataSource.at(i).nombre + "</big></br><b><em>" + dataSource.at(i).estado + "</em></b><button onclick='apptiendatiendaModelitemClick("+dataSource.at(i).uid+")'>Ver Bodega</button>"));
 
                             if (detalle == "Detalle") {
                                 map.panTo(new L.LatLng(parseFloat(dataSource.at(i).direcciones[j].latitud), parseFloat(dataSource.at(i).direcciones[j].longitud)));
@@ -426,7 +422,7 @@ app.tienda = kendo.observable({
     // }
 
     parent.set('onShow', function (e) {
-        dataSource.transport.options.read.url = servidor + "tienda/listarPorDistrito?id=" + $("#distrito-select-filtro option:selected").val();
+        // dataSource.transport.options.read.url = servidor + "tienda/listarPorDistrito?id=" + $("#distrito-select-filtro option:selected").val();
 
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null,
             isListmenu = false,
@@ -452,3 +448,9 @@ app.tienda = kendo.observable({
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
 // END_CUSTOM_CODE_tiendaModel
+function apptiendatiendaModelitemClick(uid){
+    // app.tienda.tiendaModel.itemClick(id);
+    console.log(app.tienda.tiendaModel.dataSource);
+    console.log(id);
+      app.mobileApp.navigate('#components/tienda/details.html?id=' + uid);
+}
